@@ -9,3 +9,4 @@ This is a pipeline, to be run on NIH HPC Biowulf, which performs 5 tasks:
 4. Performs general doublet detection using **DoubletDetection**, **scDblFinder**, and **scds**
 5. Filters out cells identified as doublets
 
+This pipeline takes advantage of the swarm capabilities of Biowulf, allowing it to be run completely parallelized. CellRanger is run first (all samples in parallel), then every other package can be run in parallel, for all samples--none are dependent on one another. 
