@@ -15,6 +15,8 @@ CellRanger and CellBender are used as independent packages, but the softwares us
 
 If your samples are not genetically multiplexed, this can still be used, only utilizing the general doublet detection tools. The only things that will need to be modified is the script to combine results from Demuxafy (XXX) and the R script to filter doublets and create objects (XXX). You also won't need to run scripts #6 and #7. 
 
+The most annoying thing is probably setting up your file paths. I give an example below of how I set up the file paths with my inputs and for my outputs. There is a script (#3) which will create all your specific output directories, so that isn't included here. I'd recommend following this as closely as possible so you don't have to change a bunch of stuff (upstream file paths will of course have to be changed). In this example, "FASTQ" represents the name of the pool/sample. 
+
 Several key notes for running this pipeline:
 1. You'll need a .txt file (what I refer to as fastq_list.txt) which has the names of the pools (or fastqs) separated by a line. These shouldn't be the actual file names, but the names of the pools/samples.
 2. If CellRanger (or STAR-solo, etc.) has already been run, you can just start from there. The Demuxafy softwares take the filtered feature matrices, and CellBender uses the raw .h5.
