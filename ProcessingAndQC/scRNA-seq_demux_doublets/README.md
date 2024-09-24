@@ -13,4 +13,7 @@ This pipeline takes advantage of the swarm capabilities of Biowulf, allowing it 
 
 CellRanger and CellBender are used as independent packages, but the softwares used for gt-demux and doublet detection are wrapped into a singularity container called [Demuxafy](https://demultiplexing-doublet-detecting-docs.readthedocs.io/en/latest/). These scripts were written using v3.0.0 of the singularity container, which can be copied on the HPC from ``/data/ADRD/amp_pd/fastq_processing/demuxafy/Demuxafy.sif``. Future changes to the image may make these scripts incompatible, so may be better to use the v3.0.0, as I've verified that everything here works correctly. 
 
-If your samples are not genetically multiplexed, this can still be used, only utilizing the general doublet detection tools. The only thing that will need to be modified is the script to combine results from Demuxafy (XXX) and the R script to filter doublets and create objects (XXX).
+If your samples are not genetically multiplexed, this can still be used, only utilizing the general doublet detection tools. The only things that will need to be modified is the script to combine results from Demuxafy (XXX) and the R script to filter doublets and create objects (XXX).
+
+Several key notes for running this pipeline:
+1. You'll need a .txt file (what I refer to as fastq_list.txt) which has the names of the pools (or fastqs) separated by a line. These shouldn't be the actual file names, but the names of the pools/samples. 
