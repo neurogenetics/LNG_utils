@@ -87,3 +87,14 @@ for FASTQ in ${FASTQ_LIST}
 do
 echo ${JOB_SCRIPT} ${FASTQ} >> ${SWARM_FILENAME}
 done
+
+##########
+
+SWARM_FILENAME=/data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/demuxafy_filter_cells.swarm
+FASTQ_LIST=$(cat /data/ADRD/amp_pd/transcriptomics/fastq_processing/cellranger/fastq_list.txt)
+JOB_SCRIPT=/data/ADRD/amp_pd/transcriptomics/fastq_processing/jobscripts/15_demuxafy_filter_cells.sh
+
+for FASTQ in ${FASTQ_LIST}
+do
+echo ${JOB_SCRIPT} ${FASTQ} >> ${SWARM_FILENAME}
+done
