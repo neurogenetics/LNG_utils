@@ -90,9 +90,9 @@ done
 
 ##########
 
-SWARM_FILENAME=/data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/demuxafy_filter_cells.swarm
+SWARM_FILENAME=/data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/filter_doublets.swarm
 FASTQ_LIST=$(cat /data/ADRD/amp_pd/transcriptomics/fastq_processing/cellranger/fastq_list.txt)
-JOB_SCRIPT=/data/ADRD/amp_pd/transcriptomics/fastq_processing/jobscripts/15_demuxafy_filter_cells.sh
+JOB_SCRIPT=/data/ADRD/amp_pd/transcriptomics/fastq_processing/jobscripts/15_filter_doublets.sh
 
 for FASTQ in ${FASTQ_LIST}
 do
