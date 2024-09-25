@@ -66,5 +66,11 @@ swarm -f /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/demuxaf
     --logdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmlogs \
     --time=00:10:00 \
     --job-name swarm_combine_results_test
-# filter cells
-
+# filter doublets
+swarm -f /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/filter_doublets.swarm \
+    -g 50 \
+    -t 1 \
+    --module R \
+    --logdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmlogs \
+    --time=2:00:00 \
+    --job-name swarm_filter_cells_test
