@@ -73,4 +73,5 @@ swarm -f /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/filter_
     --module R \
     --logdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmlogs \
     --time=2:00:00 \
-    --job-name swarm_filter_cells_test
+    --job-name swarm_filter_cells_test \
+    --gres=lscratch:5
