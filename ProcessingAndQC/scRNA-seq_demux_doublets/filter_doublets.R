@@ -105,7 +105,7 @@ colnames(cellbender_seurat) <- cellbender_seurat$barcode_batch
 ####################################
 
 cellranger_seurat_dir <- paste0("/data/ADRD/amp_pd/transcriptomics/fastq_processing/final_outs/", fastq, "/", fastq, "_cellranger_seurat.rds")
-cellranger_seurat_dir <- paste0("/data/ADRD/amp_pd/transcriptomics/fastq_processing/final_outs/", fastq, "/", fastq, "_cellranger_seurat.rds")
+cellbender_seurat_dir <- paste0("/data/ADRD/amp_pd/transcriptomics/fastq_processing/final_outs/", fastq, "/", fastq, "_cellbender_seurat.rds")
 
 # check that cell IDs match between objects and save objects if they match
 if (!all(colnames(cellranger_seurat) %in% colnames(cellbender_seurat)) || 
