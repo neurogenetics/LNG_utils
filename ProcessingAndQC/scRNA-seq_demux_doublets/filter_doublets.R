@@ -53,7 +53,6 @@ cellranger_seurat[["pct.ribo"]] <- PercentageFeatureSet(cellranger_seurat, patte
 
 
 # add relevant metadata
-
 meta <- filtered[filtered$Barcode %in% colnames(cellranger_seurat), ]
 meta <- meta[c("Barcode", "Demuxalot_Individual_Assignment")]
 colnames(meta) <- c("barcode", "donor")
@@ -64,6 +63,19 @@ meta$batch <- batch
 cellranger_meta <- cellranger_seurat@meta.data
 cellranger_meta <- rownames_to_column(cellranger_meta, var = "barcode")
 
+
+# add brain regions
+regions_dir <- paste0("/data/ADRD/amp_pd/transcriptomics/fastq_processing/fastqs/", fastq, "/donor_region_list.txt")
+regions <- read.delim(regions_dir, header = F, sep = "\t")
+
+split <- do.call(rbind, strsplit(regions$V1, "(?<=.)-(?!.*-)", perl = TRUE))
+regions <- data.frame(donor = split[, 1], region = split[, 2])
+
+meta <- meta %>%
+  left_join(regions, by = "donor")
+
+
+# combine all metadata
 combined_cellranger_meta <- cellranger_meta %>%
   left_join(meta, by = "barcode") %>%
   column_to_rownames(var = "barcode")
@@ -105,7 +117,7 @@ colnames(cellbender_seurat) <- cellbender_seurat$barcode_batch
 ####################################
 
 cellranger_seurat_dir <- paste0("/data/ADRD/amp_pd/transcriptomics/fastq_processing/final_outs/", fastq, "/", fastq, "_cellranger_seurat.rds")
-cellbender_seurat_dir <- paste0("/data/ADRD/amp_pd/transcriptomics/fastq_processing/final_outs/", fastq, "/", fastq, "_cellbender_seurat.rds")
+cellranger_seurat_dir <- paste0("/data/ADRD/amp_pd/transcriptomics/fastq_processing/final_outs/", fastq, "/", fastq, "_cellranger_seurat.rds")
 
 # check that cell IDs match between objects and save objects if they match
 if (!all(colnames(cellranger_seurat) %in% colnames(cellbender_seurat)) || 
@@ -116,3 +128,4 @@ if (!all(colnames(cellranger_seurat) %in% colnames(cellbender_seurat)) ||
   saveRDS(cellranger_seurat, file = cellranger_seurat_dir)
   saveRDS(cellbender_seurat, file = cellbender_seurat_dir)
 }
+
